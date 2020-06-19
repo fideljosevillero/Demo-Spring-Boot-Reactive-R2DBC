@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.8.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.fideljose'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	jcenter() //
+	maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' } //
+    maven { url "https://plugins.gradle.org/m2" }
+	mavenCentral()
+}
+
+dependencies {
+	
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.2.8.RELEASE'
+	compile group: 'org.springframework.boot.experimental', name: 'spring-boot-starter-data-r2dbc', version: '0.1.0.M2'
+	testCompile group: 'io.r2dbc', name: 'r2dbc-postgresql', version: '0.8.0.RELEASE'
+	
+	
+	compile "org.projectlombok:lombok:1.16.10"
+	
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'io.projectreactor:reactor-test'
+	
+	// https://mvnrepository.com/artifact/com.wavefront/wavefront-spring-boot
+	compile group: 'com.wavefront', name: 'wavefront-spring-boot', version: '2.0.0-RC1'
+	
+}
+
+test {
+	useJUnitPlatform()
+}
